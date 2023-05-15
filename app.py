@@ -1,8 +1,13 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/health')
 def index():
-    return 'Hello world!'
+    return 'Healthly'
+
+@app.route('/', methods=['POST']) 
+def foo():
+    data = request.json
+    print(data)
+    return jsonify(data)
